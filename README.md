@@ -1,8 +1,8 @@
 <a href="https://travis-ci.com/github/camunda-community-hub/camunda-platform-scenario" target="_blank"><img src="https://travis-ci.com/camunda-community-hub/camunda-platform-scenario.svg?branch=master" align="right"></img></a>
-<a href="https://maven-badges.herokuapp.com/maven-central/org.camunda.bpm.extension.scenario/camunda-platform-scenario-runner" target="_blank"><img src="https://maven-badges.herokuapp.com/maven-central/org.camunda.bpm.extension.scenario/camunda-platform-scenario-runner/badge.svg?style=social" align="right"></img></a>
+<a href="https://maven-badges.herokuapp.com/maven-central/org.operaton.bpm.extension.scenario/camunda-platform-scenario-runner" target="_blank"><img src="https://maven-badges.herokuapp.com/maven-central/org.operaton.bpm.extension.scenario/camunda-platform-scenario-runner/badge.svg?style=social" align="right"></img></a>
 <a href="https://github.com/camunda-community-hub/community" target="_blank"><img src="https://img.shields.io/badge/Community%20Extension-An%20open%20source%20community%20maintained%20project-FF4700"></img></a>
 
-# <img src="https://avatars.githubusercontent.com/u/2443838?s=23&v=4" width="23" height="23"></img>&nbsp;Camunda Platform <strong>Scenario</strong><a href="https://maven-badges.herokuapp.com/maven-central/org.camunda.bpm.extension.scenario/camunda-platform-scenario-runner"></a>
+# <img src="https://avatars.githubusercontent.com/u/2443838?s=23&v=4" width="23" height="23"></img>&nbsp;Camunda Platform <strong>Scenario</strong><a href="https://maven-badges.herokuapp.com/maven-central/org.operaton.bpm.extension.scenario/camunda-platform-scenario-runner"></a>
 
 <img src="https://github.com/camunda-community-hub/camunda-platform-scenario/raw/master/doc/img/clapboard.jpg" align="right" width="400"></img>
 
@@ -37,7 +37,7 @@ in charge of the work needs to be reminded daily to actually do it! :smile: In o
 of processes, the library allows to "defer" actions for specified time periods. The following test code snippet verifies
 the example case, that the colleague should be reminded twice, in case he needs 2 1/2 days to complete the work.
 
-<img src="https://github.com/camunda-community-hub/camunda-platform-scenario/raw/master/doc/img/readme-process.png" width="400" align="left"/>
+<img src="https://github.com/ronalders/operaton-platform-scenario/raw/master/doc/img/readme-process.png" width="400" align="left"/>
 
 ```groovy
 @Test
@@ -163,19 +163,19 @@ against a [travis ci test matrix](https://travis-ci.com/camunda-community-hub/ca
 
 ```xml  
 <dependency>
-    <groupId>org.camunda.bpm.extension</groupId>
-    <artifactId>camunda-bpm-assert-scenario</artifactId>
+    <groupId>org.operaton.bpm.extension</groupId>
+    <artifactId>operaton-bpm-assert-scenario</artifactId>
     <version>1.1.1</version>
     <scope>test</scope>
 </dependency>
 ```
 
-**or upcoming version 2.x**: <a href="https://maven-badges.herokuapp.com/maven-central/org.camunda.bpm.extension.scenario/camunda-platform-scenario-runner"><img src="https://maven-badges.herokuapp.com/maven-central/org.camunda.bpm.extension.scenario/camunda-platform-scenario-runner/badge.svg?style=social" style="vertical-align: middle" align="right"></img></a>
+**or upcoming version 2.x**: <a href="https://maven-badges.herokuapp.com/maven-central/org.operaton.bpm.extension.scenario/camunda-platform-scenario-runner"><img src="https://maven-badges.herokuapp.com/maven-central/org.operaton.bpm.extension.scenario/camunda-platform-scenario-runner/badge.svg?style=social" style="vertical-align: middle" align="right"></img></a>
 
 ```xml  
 <dependency>
-    <groupId>org.camunda.bpm.extension.scenario</groupId>
-    <artifactId>camunda-platform-scenario-runner</artifactId>
+    <groupId>org.operaton.bpm.extension.scenario</groupId>
+    <artifactId>operaton-platform-scenario-runner</artifactId>
     <version><!-- See version badge above -->></version>
     <scope>test</scope>
 </dependency>
@@ -184,7 +184,7 @@ against a [travis ci test matrix](https://travis-ci.com/camunda-community-hub/ca
 **2.** Add a mocked `ProcessScenario` to your test class
 
 Create your test case just as described in
-the [Camunda Platform Testing Guide](https://docs.camunda.org/manual/latest/user-guide/testing/). Then add Camunda Platform Scenario Runner by mocking its main interface - the example shown here makes use of Mockito:
+the [operaton Platform Testing Guide](https://docs.operaton.org/manual/latest/user-guide/testing/). Then add Camunda Platform Scenario Runner by mocking its main interface - the example shown here makes use of Mockito:
 
 ```java
 ProcessScenario insuranceApplication = mock(ProcessScenario.class);
@@ -213,12 +213,12 @@ Congrats! You are successfully using Camunda Platform Scenario.
 
 ## Add extensive logging to your tests
 
-Turn on the logger 'org.camunda.bpm.scenario' and you will see detailed information about the execution of scenarios.
+Turn on the logger 'org.operaton.bpm.scenario' and you will see detailed information about the execution of scenarios.
 The details of configuration depend on your logging framework - when using logback, you would e.g. write
 in `logback.xml`
 
 ```xml
-<logger name="org.camunda.bpm.scenario" level="debug" /> <!-- or info -->
+<logger name="org.operaton.bpm.scenario" level="debug" /> <!-- or info -->
 ```
 
 For optimally readably output, it can make a lot of sense to turn off all other logging, because scenario logging

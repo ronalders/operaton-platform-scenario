@@ -2,28 +2,48 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>camunda-platform-scenario-example</artifactId>
+    <artifactId>operaton-platform-scenario-example</artifactId>
 
     <parent>
-        <groupId>org.camunda.bpm.extension.scenario.project</groupId>
-        <artifactId>camunda-platform-scenario-test</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
+        <groupId>org.operaton.bpm.extension.scenario.project</groupId>
+        <artifactId>operaton-platform-scenario-test</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
         <relativePath>../test/pom.xml</relativePath>
     </parent>
 
     <dependencies>
-
         <dependency>
-            <groupId>org.camunda.bpm.extension.scenario</groupId>
-            <artifactId>camunda-platform-scenario-runner</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.operaton.bpm.extension.scenario</groupId>
+            <artifactId>operaton-platform-scenario-runner</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.operaton.bpm</groupId>
+            <artifactId>operaton-engine</artifactId>
+            <classifier>junit5</classifier>
             <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.camunda.bpm</groupId>
-            <artifactId>camunda-engine</artifactId>
-            <version>7.15.0</version> <!-- compile against explicitly set version -->
-            <scope>provided</scope>
+            <groupId>org.operaton.bpm</groupId>
+            <artifactId>operaton-engine</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.14.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.14.0</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
