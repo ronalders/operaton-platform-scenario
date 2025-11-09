@@ -10,9 +10,9 @@
     </properties>
 
     <parent>
-        <groupId>org.operaton.bpm.extension.scenario.project</groupId>
+        <groupId>org.github.ronalders.bpm.scenario.project</groupId>
         <artifactId>operaton-platform-scenario-test</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <dependencies>
@@ -28,7 +28,7 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.operaton.bpm.extension.scenario</groupId>
+            <groupId>io.github.ronalders</groupId>
             <artifactId>operaton-platform-scenario-runner</artifactId>
             <scope>test</scope>
         </dependency>

@@ -2,22 +2,36 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.operaton.bpm.extension.scenario.project</groupId>
+    <groupId>org.github.ronalders.bpm.scenario.project</groupId>
     <artifactId>operaton-platform-scenario-root</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
+
+    <name>Operaton Platform Scenario root</name>
+    <description>Scenario runner for Operaton Platform</description>
+    <url>https://github.com/ronalders/operaton-platform-scenario-runner</url>
 
     <packaging>pom</packaging>
 
-    <url>https://https://github.com/ronalders/operaton-platform-scenario</url>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Ron Alders</name>
+            <email>aldersron@gmail.com</email>
+        </developer>
+    </developers>
+
 
     <modules>
         <module>runner</module>
         <module>report</module>
         <module>cucumber</module>
         <module>test</module>
-<!--
-        <module>test</module>
--->
     </modules>
 
     <properties>
@@ -41,17 +55,17 @@
                 <classifier>junit5</classifier>
             </dependency>
             <dependency>
-                <groupId>org.operaton.bpm.extension.scenario</groupId>
+                <groupId>io.github.ronalders</groupId>
                 <artifactId>operaton-platform-scenario-runner</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.operaton.bpm.extension.scenario</groupId>
+                <groupId>io.github.ronalders</groupId>
                 <artifactId>operaton-platform-scenario-report</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.operaton.bpm.extension.scenario</groupId>
+                <groupId>io.github.ronalders</groupId>
                 <artifactId>operaton-platform-scenario-cucumber</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -59,6 +73,7 @@
                 <groupId>org.operaton.bpm</groupId>
                 <artifactId>operaton-bpm-junit5</artifactId>
                 <version>${operaton.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.operaton.bpm</groupId>
@@ -118,6 +133,8 @@
         </dependencies>
     </dependencyManagement>
 
+
+
     <dependencies>
         <dependency>
             <groupId>org.operaton.bpm</groupId>
@@ -127,11 +144,6 @@
         <dependency>
             <groupId>org.operaton.bpm</groupId>
             <artifactId>operaton-bpm-assert</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.operaton.bpm</groupId>
-            <artifactId>operaton-bpm-junit5</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -193,8 +205,34 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.12.0</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.2.7</version>
+                        <version>3.1.0</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -266,6 +304,26 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <executions>
+                        <execution>
+                            <phase>deploy</phase>
+                        </execution>
+                    </executions>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>0.9.0</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <publishingServerId>central</publishingServerId>
+                        <autoPublish>true</autoPublish>
+                        <excludeArtifacts>
+                            <excludeArtifact>.*-root</excludeArtifact>
+                            <excludeArtifact>.*-example</excludeArtifact>
+                            <excludeArtifact>.*-test</excludeArtifact>
+                        </excludeArtifacts>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>3.1.1</version>
@@ -286,9 +344,49 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.2.2</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>3.1.0</version>
+                    <executions>
+                        <execution>
+                            <id>sign-artifacts</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>sign</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <!-- Prevent gpg from using pinentry programs -->
+                        <gpgArguments>
+                            <arg>--pinentry-mode</arg>
+                            <arg>loopback</arg>
+                        </gpgArguments>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
+<!--    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <url>https://central.sonatype.com/api/v1/publisher</url>
+        </repository>
+    </distributionManagement>-->
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>central</id>
+            <url>https://central.sonatype.com/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:git://github.com/ronalders/operaton-platform-scenario-runner.git</connection>
+        <developerConnection>scm:git:ssh://github.com:ronalders/operaton-platform-scenario-runner.git</developerConnection>
+        <url>https://github.com/ronalders/operaton-platform-scenario-runner</url>
+    </scm>
 
 </project>
